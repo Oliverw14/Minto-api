@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 
 
+from auth.router import auth_router
 from incomings.router import incomings_router
 from outgoings.router import outgoings_router
 
@@ -20,6 +21,7 @@ def get_application() -> FastAPI:
         allow_methods=["*"],
         allow_headers=['*']
     )
+    app.include_router(auth_router)
     app.include_router(incomings_router)
     app.include_router(outgoings_router)
 
